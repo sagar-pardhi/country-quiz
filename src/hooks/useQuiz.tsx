@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 export const useQuiz = () => {
+  /*@ts-ignore */
   const [questionsData, setQuestionsData] = useState([
     {
       capital: "New Delhi",
