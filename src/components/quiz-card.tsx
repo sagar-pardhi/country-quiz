@@ -27,7 +27,7 @@ export const QuizCard = ({
       </h2>
       <div className="relative px-5 py-10 bg-white rounded-2xl">
         <img
-          src="/assets/undraw_adventure.svg"
+          src="/undraw_adventure.svg"
           alt=""
           className="absolute right-0 -top-20 pb-5 w-36 h-36"
         />
