@@ -1,70 +1,36 @@
-import { useState } from "react";
-import { Quiz } from "./components/quiz";
+import { QuizCard } from "./components/quiz-card";
+import { ScoreCard } from "./components/score-card";
+import { useQuiz } from "./hooks/useQuiz";
 
 export const App = () => {
-  const [questionsData, setQuestionsData] = useState([
-    {
-      capital: "New Delhi",
-      options: [
-        { answer: "India", isCorrect: true },
-        { answer: "China", isCorrect: false },
-        { answer: "Pakistan", isCorrect: false },
-        { answer: "Bangladesh", isCorrect: false },
-      ],
-    },
-    {
-      capital: "Washington D.C",
-      options: [
-        { answer: "England", isCorrect: false },
-        { answer: "USA", isCorrect: true },
-        { answer: "Italy", isCorrect: false },
-        { answer: "France", isCorrect: false },
-      ],
-    },
-    {
-      capital: "Kathmandu",
-      options: [
-        { answer: "India", isCorrect: false },
-        { answer: "China", isCorrect: false },
-        { answer: "Nepal", isCorrect: true },
-        { answer: "Bangladesh", isCorrect: false },
-      ],
-    },
-    {
-      capital: "Tokyo",
-      options: [
-        { answer: "India", isCorrect: false },
-        { answer: "Australia", isCorrect: false },
-        { answer: "South Korea", isCorrect: false },
-        { answer: "Japan", isCorrect: true },
-      ],
-    },
-  ]);
-  const [currentQuestion, setCurrentQuestion] = useState(questionsData[0]);
-  const [questionIndex, setQuestionIndex] = useState(1);
-  const [score, setScore] = useState(0);
-
-  console.log("👉 ", {
-    questionIndex,
-    questionsDataLength: questionsData.length,
-  });
-
-  const handleNext = () => {
-    if (questionIndex === questionsData.length) {
-      return;
-    }
-    setQuestionIndex((prev) => prev + 1);
-    setCurrentQuestion(questionsData[questionIndex]);
-  };
+  const {
+    questionsData,
+    currentQuestion,
+    showScore,
+    score,
+    isCorrectAnswer,
+    handleNext,
+    handleAnswerCheck,
+    handleReset,
+  } = useQuiz();
 
   return (
-    <main className="container mx-auto flex justify-center items-center h-screen w-full">
+    <main className="container flex justify-center items-center mx-auto w-full h-screen">
       <img
         src="/assets/background.png"
         alt="background image"
-        className="absolute w-full h-screen object-cover -z-10"
+        className="object-cover absolute w-full h-screen -z-10"
       />
-      <Quiz {...currentQuestion} handleNext={handleNext} />
+      {showScore ? (
+        <ScoreCard score={score} handleReset={handleReset} />
+      ) : (
+        <QuizCard
+          {...questionsData[currentQuestion]}
+          isCorrectAnswer={isCorrectAnswer}
+          handleNext={handleNext}
+          handleAnswerCheck={handleAnswerCheck}
+        />
+      )}
     </main>
   );
 };
