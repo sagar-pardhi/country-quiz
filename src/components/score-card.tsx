@@ -10,7 +10,11 @@ export const ScoreCard = ({ score, handleReset }: ScoreCardProps) => {
         Country Quiz
       </h2>
       <div className="flex relative flex-col items-center px-5 py-5 bg-white rounded-2xl">
-        <img src="/undraw_winners.svg" alt="" className="pb-5 w-40 h-40" />
+        <img
+          src="assets/undraw_winners.svg"
+          alt=""
+          className="pb-5 w-40 h-40"
+        />
         <h2 className="text-4xl font-bold mb-5 text-[#1d355e]">Results</h2>
         <p className="text-[#1d355e] font-semibold">
           You got{" "}

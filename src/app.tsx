@@ -17,7 +17,7 @@ export const App = () => {
   return (
     <main className="container flex justify-center items-center mx-auto w-full h-screen">
       <img
-        src="/background.png"
+        src="assets/background.png"
         alt="background image"
         className="object-cover absolute w-full h-screen -z-10"
       />
